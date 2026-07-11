@@ -1,10 +1,12 @@
+import { assetPath } from '../utils/assetPath';
+
 export function Contact() {
   return (
     <div className="about-contact-page section-fade">
       <section className="about-contact-layout" aria-labelledby="about-contact-title">
         <div className="about-contact-image-wrap">
           <img
-            src="/images/contact/teo-contact-portrait.jpg"
+            src={assetPath('/images/contact/teo-contact-portrait.jpg')}
             alt="Portrait of Teo Gonzales holding a camera"
             loading="lazy"
             decoding="async"

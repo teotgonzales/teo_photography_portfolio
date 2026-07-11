@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { ProjectImage } from '../data/projects';
+import { assetPath } from '../utils/assetPath';
 import { Lightbox } from './Lightbox';
 
 type ProjectGalleryProps = {
@@ -19,7 +20,7 @@ export function ProjectGallery({ images }: ProjectGalleryProps) {
             key={`${image.src}-${image.alt}`}
             onClick={() => setActiveImage(image)}
           >
-            <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+            <img src={assetPath(image.src)} alt={image.alt} loading="lazy" decoding="async" />
           </button>
         ))}
       </div>

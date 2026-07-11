@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import type { Project } from '../data/projects';
+import { assetPath } from '../utils/assetPath';
 import { ProjectCard } from './ProjectCard';
 
 type ProjectGridProps = {
@@ -102,7 +103,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
       const project = projects[index];
       const imageSrc = project.images[0]?.src ?? project.coverImage;
       const image = new Image();
-      image.src = imageSrc;
+      image.src = assetPath(imageSrc);
     });
   }, [activeIndex, projects]);
 
@@ -139,7 +140,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
               {previousProject ? (
                 <img
                   className="previous-image"
-                  src={previousImage?.src ?? previousProject.coverImage}
+                  src={assetPath(previousImage?.src ?? previousProject.coverImage)}
                   alt={previousImage?.alt ?? previousProject.coverAlt}
                   decoding="async"
                 />
@@ -147,7 +148,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
               <img
                 key={activeProject.id}
                 className="current-image"
-                src={activeImage?.src ?? activeProject.coverImage}
+                src={assetPath(activeImage?.src ?? activeProject.coverImage)}
                 alt={activeImage?.alt ?? activeProject.coverAlt}
                 decoding="async"
               />

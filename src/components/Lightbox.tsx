@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import type { ProjectImage } from '../data/projects';
+import { assetPath } from '../utils/assetPath';
 
 type LightboxProps = {
   image: ProjectImage | null;
@@ -32,7 +33,7 @@ export function Lightbox({ image, onClose }: LightboxProps) {
         Close
       </button>
       <button className="lightbox-backdrop" type="button" aria-label="Close preview" onClick={onClose} />
-      <img src={image.src} alt={image.alt} decoding="async" />
+      <img src={assetPath(image.src)} alt={image.alt} decoding="async" />
     </div>
   );
 }
