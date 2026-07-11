@@ -2,6 +2,10 @@
 
 A static photography portfolio for Teo Gonzales, built with React, TypeScript, Vite, React Router, and plain CSS.
 
+- Live site: [teogonzales.com](https://teogonzales.com)
+- Hosting: GitHub Pages
+- Deployment: automatic on pushes to `main`
+
 The current sections are:
 
 - On Stage: `/`
@@ -92,18 +96,12 @@ src/data/lifestyle.ts
 
 ## Deployment
 
-This project is configured for static hosting and can be deployed to GitHub Pages.
+This project is deployed to GitHub Pages through `.github/workflows/deploy-pages.yml`.
 
 Current Vite config uses:
 
 ```ts
 base: './'
-```
-
-For a GitHub Pages project site, you may also use:
-
-```ts
-base: '/your-repo-name/'
 ```
 
 Build the site:
@@ -117,6 +115,10 @@ The deployable files will be in:
 ```text
 dist
 ```
+
+To publish an update, commit the changes in GitHub Desktop and click **Push origin**. GitHub Actions rebuilds and deploys the site automatically.
+
+The custom domain is `teogonzales.com`, with DNS managed in Cloudflare. See [DOCUMENTATION.md](./DOCUMENTATION.md) for the exact GitHub Pages, routing, DNS, image-path, and social-link configuration.
 
 ## More Documentation
 

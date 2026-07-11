@@ -15,7 +15,7 @@ export const onStageProjects: Project[] = [
     images: [{ src: '/images/on-stage/full/_R000226.webp', alt: 'On Stage photograph by Teo Gonzales', orientation: 'portrait' }],
   },
   {
-    id: 1003,
+    id: 1002,
     slug: '010-01-jsolomon-teogonzales007',
     title: '010 01 JSolomon 007',
     category: 'On Stage',
@@ -28,7 +28,7 @@ export const onStageProjects: Project[] = [
     images: [{ src: '/images/on-stage/full/010_01_JSolomon_TeoGonzales007.webp', alt: 'On Stage photograph by Teo Gonzales', orientation: 'portrait' }],
   },
   {
-    id: 1004,
+    id: 1003,
     slug: '010-01-jsolomon-teogonzales031',
     title: '010 01 JSolomon 031',
     category: 'On Stage',
@@ -41,7 +41,7 @@ export const onStageProjects: Project[] = [
     images: [{ src: '/images/on-stage/full/010_01_JSolomon_TeoGonzales031.webp', alt: 'On Stage photograph by Teo Gonzales', orientation: 'portrait' }],
   },
   {
-    id: 1002,
+    id: 1004,
     slug: '010-01-aylaclaire-teogonzales005',
     title: '010 01 AylaClaire 005',
     category: 'On Stage',

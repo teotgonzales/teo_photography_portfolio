@@ -12,6 +12,22 @@ This file is for anyone taking over or updating the Teo Gonzales photography por
 - No backend
 - Static hosting friendly
 
+## Live Site and Source Control
+
+- Live website: [https://teogonzales.com](https://teogonzales.com)
+- GitHub repository: [teotgonzales/teo_photography_portfolio](https://github.com/teotgonzales/teo_photography_portfolio)
+- Production branch: `main`
+- Hosting: GitHub Pages
+- Deployment: GitHub Actions via `.github/workflows/deploy-pages.yml`
+
+Every push to `main` automatically builds and redeploys the website. The normal update flow is:
+
+1. Edit and test the website locally.
+2. Review the changes in GitHub Desktop.
+3. Commit with a short summary.
+4. Click **Push origin**.
+5. Confirm the `Deploy website to GitHub Pages` workflow passes in the GitHub **Actions** tab.
+
 ## App Entry Points
 
 - `index.html`: HTML shell used by Vite.
@@ -99,6 +115,8 @@ Use image paths like:
 
 Do not import images into React components unless you intentionally move them into `src`.
 
+`src/utils/assetPath.ts` makes public image paths work on both the custom domain and the fallback GitHub project URL. Use `assetPath(...)` whenever a component renders one of these string-based image paths.
+
 ## Auto-Syncing Photos
 
 For normal updates, use this order:
@@ -172,6 +190,9 @@ Then refresh the site. For a live website, rebuild and redeploy after syncing.
   - Top masthead with `TEO GONZALES`
   - Navigation links
   - Email, Instagram, and LinkedIn icons
+  - Email: `teogonzalesphoto@gmail.com`
+  - Instagram: `https://www.instagram.com/teotgonzales`
+  - LinkedIn: `https://www.linkedin.com/in/teo-gonzales-00962a420/`
 
 - `src/components/Footer.tsx`
   - Copyright text only
@@ -179,7 +200,9 @@ Then refresh the site. For a live website, rebuild and redeploy after syncing.
 ### Gallery Components
 
 - `src/components/ProjectGrid.tsx`
-  - Displays gallery cards
+  - Displays a natural-proportion masonry gallery
+  - Uses three columns on desktop, two on tablets, and one on phones
+  - Does not show captions below gallery images
   - Handles full-screen image viewer
   - Supports click-to-open, close button, backdrop click, keyboard Escape, and arrow key navigation
 
@@ -241,7 +264,7 @@ It imports these files:
 
 - `src/styles/responsive.css`
   - tablet/mobile breakpoints
-  - mobile gallery currently uses two columns
+  - mobile gallery uses one column
 
 Component CSS files are colocated in `src/components`.
 
@@ -288,7 +311,7 @@ Edit:
 src/components/Header.tsx
 ```
 
-Replace the placeholder Instagram/LinkedIn URLs with real profile URLs.
+Current profile URLs are listed under **Components** above.
 
 ### Change Footer
 
@@ -314,3 +337,29 @@ Look for `.project-grid` inside the `@media (max-width: 680px)` block.
 - A private upload/admin page would require authentication, storage, and a backend or third-party CMS.
 - The current lightbox opens cover images from the visible grid.
 - Some older components remain because `ProjectDetail.tsx` still supports detail/gallery pages.
+
+## GitHub Pages and Domain Configuration
+
+GitHub Pages is configured under the repository's **Settings → Pages** screen with:
+
+- Source: `GitHub Actions`
+- Custom domain: `teogonzales.com`
+- HTTPS: enabled after GitHub issues the certificate
+
+The workflow builds the Vite site and uploads `dist` to GitHub Pages. `public/404.html`, the redirect restoration script in `index.html`, and the runtime basename in `src/main.tsx` preserve React routes when a visitor opens a route directly.
+
+DNS is managed through Cloudflare. All website records must remain **DNS only** rather than proxied:
+
+| Type | Name | Content |
+| --- | --- | --- |
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `teotgonzales.github.io` |
+
+Do not modify MX or TXT records when changing website DNS; those records may control email and domain verification.
+
+## Repository Ignore Rules
+
+`.gitignore` excludes dependencies, generated output, local settings, and large source JPG/PNG files. Optimized `thumbs` and `full` WebP files remain tracked because the deployed website uses them.

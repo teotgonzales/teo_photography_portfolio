@@ -8,6 +8,12 @@ const pages = [
     exportName: 'onStageProjects',
     category: 'On Stage',
     idStart: 1000,
+    preferredOrder: [
+      '_R000226.webp',
+      '010_01_JSolomon_TeoGonzales007.webp',
+      '010_01_JSolomon_TeoGonzales031.webp',
+      '010_01_AylaClaire_TeoGonzales005.webp',
+    ],
     defaultClient: 'On Stage',
     defaultDescription: 'On stage photography by Teo Gonzales.',
   },
@@ -17,6 +23,12 @@ const pages = [
     exportName: 'onSetProjects',
     category: 'On Set',
     idStart: 2000,
+    preferredOrder: [
+      'AylaClaire02-06-2026_TeoGonzales053.webp',
+      'EulogyBTS_TeoGonzales013.webp',
+      'EulogyBTS_TeoGonzales050.webp',
+      'AylaClaire02-06-2026_TeoGonzales080.webp',
+    ],
     defaultClient: 'On Set',
     defaultDescription: 'On set photography by Teo Gonzales.',
   },
@@ -44,6 +56,20 @@ const supportedExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif'])
 const isGalleryImage = (filename) =>
   supportedExtensions.has(extname(filename).toLowerCase()) &&
   !filename.toLowerCase().includes('placeholder');
+
+const compareGalleryFiles = (page) => (a, b) => {
+  const preferredOrder = page.preferredOrder ?? [];
+  const aIndex = preferredOrder.indexOf(a);
+  const bIndex = preferredOrder.indexOf(b);
+
+  if (aIndex !== -1 || bIndex !== -1) {
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+    return aIndex - bIndex;
+  }
+
+  return a.localeCompare(b);
+};
 
 const escapeText = (value) => value.replaceAll('\\', '\\\\').replaceAll("'", "\\'");
 
@@ -153,7 +179,7 @@ const syncPage = async (page) => {
   const folderPath = join('public', 'images', page.folder);
   const optimizedThumbs = (await listFiles(join(folderPath, 'thumbs')))
     .filter(isGalleryImage)
-    .sort((a, b) => a.localeCompare(b));
+    .sort(compareGalleryFiles(page));
 
   const files = optimizedThumbs.length
     ? optimizedThumbs.map((filename) => ({
@@ -164,7 +190,7 @@ const syncPage = async (page) => {
       }))
     : (await readdir(folderPath))
         .filter(isGalleryImage)
-        .sort((a, b) => a.localeCompare(b))
+        .sort(compareGalleryFiles(page))
         .map((filename) => ({
           filename,
           sourceName: filename,
