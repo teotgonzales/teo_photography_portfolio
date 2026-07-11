@@ -1,0 +1,146 @@
+@media (max-width: 980px) {
+  .hero,
+  .about-section,
+  .contact-page,
+  .about-contact-layout,
+  .project-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-copy {
+    padding-bottom: 0;
+  }
+
+  .hero-image {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .motion-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-grid {
+    columns: 2;
+  }
+
+  .section-heading,
+  .project-hero,
+  .footer {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .client-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-contact-image-wrap {
+    min-height: auto;
+  }
+
+  .about-contact-copy {
+    gap: 1.4rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .nav,
+  .footer,
+  .page-shell {
+    width: min(calc(100% - 1.25rem), var(--max-width));
+  }
+
+  .menu-button {
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .header-socials {
+    top: 1rem;
+    left: 0;
+    right: auto;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0.625rem;
+    left: 0.625rem;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 0.4rem;
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.7rem;
+  }
+
+  .motion-grid,
+  .client-list {
+    grid-template-columns: 1fr;
+  }
+
+  .project-grid {
+    columns: 1;
+  }
+
+  .project-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-item,
+  .gallery-item.portrait,
+  .gallery-item.landscape,
+  .gallery-item.square {
+    grid-column: span 1;
+  }
+
+  .project-nav,
+  .hero-actions,
+  .social-row {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .grid-lightbox {
+    padding: 4rem 1rem 1rem;
+  }
+
+  .grid-lightbox-arrow {
+    top: auto;
+    bottom: 0.6rem;
+    width: 48px;
+    height: 48px;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

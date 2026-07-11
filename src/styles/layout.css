@@ -1,0 +1,39 @@
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 20;
+  transform: translateY(-180%);
+  background: var(--text);
+  color: var(--bg);
+  padding: 0.7rem 1rem;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.nav,
+.footer,
+.page-shell {
+  width: min(calc(100% - 2rem), var(--max-width));
+  margin: 0 auto;
+}
+
+.page-shell {
+  min-height: 72vh;
+}
+
+.page-content,
+.project-detail,
+.contact-page {
+  padding: clamp(2.5rem, 5vw, 5rem) 0;
+}
+
+.section-block {
+  padding: clamp(3rem, 7vw, 7rem) 0;
+}
+
+.section-fade {
+  animation: fade-up 520ms ease both;
+}

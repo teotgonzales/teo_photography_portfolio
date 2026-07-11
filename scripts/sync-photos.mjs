@@ -1,0 +1,191 @@
+import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { extname, join, parse } from 'node:path';
+
+const pages = [
+  {
+    folder: 'on-stage',
+    output: 'src/data/onStage.ts',
+    exportName: 'onStageProjects',
+    category: 'On Stage',
+    idStart: 1000,
+    defaultClient: 'On Stage',
+    defaultDescription: 'On stage photography by Teo Gonzales.',
+  },
+  {
+    folder: 'on-set',
+    output: 'src/data/onSet.ts',
+    exportName: 'onSetProjects',
+    category: 'On Set',
+    idStart: 2000,
+    defaultClient: 'On Set',
+    defaultDescription: 'On set photography by Teo Gonzales.',
+  },
+  {
+    folder: 'portraits',
+    output: 'src/data/portraits.ts',
+    exportName: 'portraitProjects',
+    category: 'Portraits',
+    idStart: 3000,
+    defaultClient: 'Portraits',
+    defaultDescription: 'Portrait photography by Teo Gonzales.',
+  },
+  {
+    folder: 'lifestyle',
+    output: 'src/data/lifestyle.ts',
+    exportName: 'lifestyleProjects',
+    category: 'Lifestyle',
+    idStart: 4000,
+    defaultClient: 'Lifestyle',
+    defaultDescription: 'Lifestyle photography by Teo Gonzales.',
+  },
+];
+
+const supportedExtensions = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
+const isGalleryImage = (filename) =>
+  supportedExtensions.has(extname(filename).toLowerCase()) &&
+  !filename.toLowerCase().includes('placeholder');
+
+const escapeText = (value) => value.replaceAll('\\', '\\\\').replaceAll("'", "\\'");
+
+const toSlug = (filename) =>
+  parse(filename)
+    .name.toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'photo';
+
+const toTitle = (filename) => {
+  const cleaned = parse(filename)
+    .name.replace(/teogonzales/gi, '')
+    .replace(/\.(jpg|jpeg|png|webp|avif)$/i, '')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (!cleaned) {
+    return 'Untitled';
+  }
+
+  return cleaned.replace(/\b\w/g, (letter) => letter.toUpperCase());
+};
+
+const readImageSize = async (filePath) => {
+  const buffer = await readFile(filePath);
+  const extension = extname(filePath).toLowerCase();
+
+  if (extension === '.png' && buffer.length >= 24) {
+    return {
+      width: buffer.readUInt32BE(16),
+      height: buffer.readUInt32BE(20),
+    };
+  }
+
+  if ((extension === '.jpg' || extension === '.jpeg') && buffer.length > 4) {
+    let offset = 2;
+
+    while (offset < buffer.length) {
+      if (buffer[offset] !== 0xff) {
+        break;
+      }
+
+      const marker = buffer[offset + 1];
+      const length = buffer.readUInt16BE(offset + 2);
+
+      if (marker >= 0xc0 && marker <= 0xc3) {
+        return {
+          height: buffer.readUInt16BE(offset + 5),
+          width: buffer.readUInt16BE(offset + 7),
+        };
+      }
+
+      offset += 2 + length;
+    }
+  }
+
+  return null;
+};
+
+const getOrientation = async (filePath) => {
+  const size = await readImageSize(filePath);
+
+  if (!size) {
+    return 'portrait';
+  }
+
+  if (Math.abs(size.width - size.height) < Math.max(size.width, size.height) * 0.08) {
+    return 'square';
+  }
+
+  return size.width > size.height ? 'landscape' : 'portrait';
+};
+
+const createProject = async (page, file, index) => {
+  const titleSource = file.sourceName ?? file.filename;
+  const thumbPath = `/images/${page.folder}/${file.thumbPath}`;
+  const fullPath = `/images/${page.folder}/${file.fullPath}`;
+  const title = toTitle(titleSource);
+  const alt = `${page.category} photograph by Teo Gonzales`;
+  const orientation = await getOrientation(join('public', 'images', page.folder, file.fullPath));
+
+  return `  {
+    id: ${page.idStart + index + 1},
+    slug: '${escapeText(toSlug(titleSource))}',
+    title: '${escapeText(title)}',
+    category: '${page.category}',
+    year: '2026',
+    client: '${page.defaultClient}',
+    location: 'Los Angeles, CA',
+    coverImage: '${escapeText(thumbPath)}',
+    coverAlt: '${escapeText(alt)}',
+    description: '${escapeText(page.defaultDescription)}',
+    images: [{ src: '${escapeText(fullPath)}', alt: '${escapeText(alt)}', orientation: '${orientation}' }],
+  }`;
+};
+
+const listFiles = async (folderPath) => {
+  try {
+    return await readdir(folderPath);
+  } catch {
+    return [];
+  }
+};
+
+const syncPage = async (page) => {
+  const folderPath = join('public', 'images', page.folder);
+  const optimizedThumbs = (await listFiles(join(folderPath, 'thumbs')))
+    .filter(isGalleryImage)
+    .sort((a, b) => a.localeCompare(b));
+
+  const files = optimizedThumbs.length
+    ? optimizedThumbs.map((filename) => ({
+        filename,
+        sourceName: filename,
+        thumbPath: `thumbs/${filename}`,
+        fullPath: `full/${filename}`,
+      }))
+    : (await readdir(folderPath))
+        .filter(isGalleryImage)
+        .sort((a, b) => a.localeCompare(b))
+        .map((filename) => ({
+          filename,
+          sourceName: filename,
+          thumbPath: filename,
+          fullPath: filename,
+        }));
+
+  const projects = await Promise.all(files.map((filename, index) => createProject(page, filename, index)));
+  const contents = `import type { Project } from './projects';
+
+export const ${page.exportName}: Project[] = [
+${projects.join(',\n')}
+];
+`;
+
+  await writeFile(page.output, contents);
+  return { page: page.category, count: files.length };
+};
+
+const results = await Promise.all(pages.map(syncPage));
+
+for (const result of results) {
+  console.log(`${result.page}: ${result.count} photo(s) synced`);
+}

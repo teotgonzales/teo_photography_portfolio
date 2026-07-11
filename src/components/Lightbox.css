@@ -1,0 +1,36 @@
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(18, 17, 16, 0.86);
+  cursor: zoom-out;
+}
+
+.lightbox img {
+  position: relative;
+  z-index: 1;
+  max-width: min(100%, 1180px);
+  max-height: 86svh;
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  border: 1px solid rgba(246, 243, 237, 0.3);
+  background: rgba(246, 243, 237, 0.12);
+  color: var(--bg);
+  cursor: pointer;
+  padding: 0.7rem 1rem;
+}

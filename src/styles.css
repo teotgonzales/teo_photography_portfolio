@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import "./styles/base.css";
+@import "./styles/layout.css";
+@import "./styles/page-shared.css";
+@import "./components/Header.css";
+@import "./components/Footer.css";
+@import "./components/ProjectGrid.css";
+@import "./components/ProjectGallery.css";
+@import "./components/Lightbox.css";
+@import "./pages/Contact.css";
+@import "./pages/ProjectDetail.css";
+@import "./styles/animations.css";
+@import "./styles/responsive.css";

@@ -1,0 +1,33 @@
+# Dependencies and generated output
+node_modules/
+.pnpm-store/
+dist/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs and editor files
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Preserved broken repository metadata
+.git-broken-backup/
+
+# Large source photos; the optimized WebP versions remain tracked
+/public/images/on-stage/*.jpg
+/public/images/on-stage/*.jpeg
+/public/images/on-stage/*.png
+/public/images/on-set/*.jpg
+/public/images/on-set/*.jpeg
+/public/images/on-set/*.png
+/public/images/portraits/*.jpg
+/public/images/portraits/*.jpeg
+/public/images/portraits/*.png
+/public/images/lifestyle/*.jpg
+/public/images/lifestyle/*.jpeg
+/public/images/lifestyle/*.png

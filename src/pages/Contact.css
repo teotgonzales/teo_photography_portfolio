@@ -1,0 +1,96 @@
+.contact-page {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(320px, 0.7fr);
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.about-contact-page {
+  padding: clamp(2rem, 5vw, 5rem) 0 clamp(4rem, 8vw, 8rem);
+}
+
+.about-contact-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(260px, 0.58fr);
+  gap: clamp(2.5rem, 7vw, 7.5rem);
+  align-items: center;
+  width: min(100%, 1040px);
+  margin: 0 auto;
+}
+
+.about-contact-image-wrap {
+  min-height: min(58svh, 620px);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.about-contact-image-wrap img {
+  width: min(100%, 520px);
+  max-height: min(62svh, 640px);
+  object-fit: contain;
+}
+
+.about-contact-copy {
+  display: grid;
+  justify-items: center;
+  gap: 1.7rem;
+  color: #33312f;
+  text-align: center;
+}
+
+.about-contact-copy h1 {
+  margin: 0;
+  font-family: inherit;
+  font-size: clamp(1.25rem, 1.9vw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.about-contact-copy p {
+  margin: -1.4rem 0 0;
+  color: #33312f;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.15;
+}
+
+.about-contact-links {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 1.3rem;
+  text-align: left;
+}
+
+.about-contact-links a {
+  color: inherit;
+  font-size: clamp(1rem, 1.45vw, 1.2rem);
+}
+
+.about-contact-links a:hover {
+  color: var(--accent);
+}
+
+.about-contact-copy section {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.about-contact-copy h2 {
+  margin: 0;
+  font-family: inherit;
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.about-contact-copy ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.about-contact-copy li {
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  font-style: italic;
+  line-height: 1.12;
+}
