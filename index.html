@@ -10,6 +10,16 @@
     <title>Teo Gonzales Photography</title>
   </head>
   <body>
+    <script>
+      const redirectRoute = new URLSearchParams(window.location.search).get('route');
+
+      if (redirectRoute) {
+        const basePath = window.location.hostname.endsWith('github.io')
+          ? '/teo_photography_portfolio'
+          : '';
+        window.history.replaceState(null, '', `${basePath}${redirectRoute}`);
+      }
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

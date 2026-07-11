@@ -25,7 +25,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: import.meta.env.BASE_URL,
+    basename: window.location.hostname.endsWith('github.io') ? '/teo_photography_portfolio' : '/',
   },
 );
 
