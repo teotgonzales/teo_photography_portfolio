@@ -58,6 +58,19 @@ const isGalleryImage = (filename) =>
   !filename.toLowerCase().includes('placeholder');
 
 const compareGalleryFiles = (page) => (a, b) => {
+  const getNumber = (filename) => {
+    const match = parse(filename).name.match(/^(\d+)[\s_.-]+/);
+    return match ? Number(match[1]) : null;
+  };
+  const aNumber = getNumber(a);
+  const bNumber = getNumber(b);
+
+  if (aNumber !== null || bNumber !== null) {
+    if (aNumber === null) return 1;
+    if (bNumber === null) return -1;
+    if (aNumber !== bNumber) return aNumber - bNumber;
+  }
+
   const preferredOrder = page.preferredOrder ?? [];
   const aIndex = preferredOrder.indexOf(a);
   const bIndex = preferredOrder.indexOf(b);
@@ -75,13 +88,14 @@ const escapeText = (value) => value.replaceAll('\\', '\\\\').replaceAll("'", "\\
 
 const toSlug = (filename) =>
   parse(filename)
-    .name.toLowerCase()
+    .name.replace(/^\d+[\s_.-]+/, '').toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '') || 'photo';
 
 const toTitle = (filename) => {
   const cleaned = parse(filename)
-    .name.replace(/teogonzales/gi, '')
+    .name.replace(/^\d+[\s_.-]+/, '')
+    .replace(/teogonzales/gi, '')
     .replace(/\.(jpg|jpeg|png|webp|avif)$/i, '')
     .replace(/[_-]+/g, ' ')
     .replace(/\s+/g, ' ')

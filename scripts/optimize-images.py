@@ -3,7 +3,8 @@ from PIL import Image, ImageOps
 
 PAGES = ["on-stage", "on-set", "portraits", "lifestyle"]
 SOURCE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".avif"}
-IMAGE_ROOT = Path("public/images")
+SOURCE_ROOT = Path("photo-sources")
+OUTPUT_ROOT = Path("public/images")
 
 
 def resize_to_width(image, max_width):
@@ -26,18 +27,26 @@ def save_webp(image, destination, quality):
 
 
 def optimize_page(page):
-    folder = IMAGE_ROOT / page
-    thumb_folder = folder / "thumbs"
-    full_folder = folder / "full"
+    source_folder = SOURCE_ROOT / page
+    output_folder = OUTPUT_ROOT / page
+    thumb_folder = output_folder / "thumbs"
+    full_folder = output_folder / "full"
 
-    if not folder.exists():
+    if not source_folder.exists():
         return 0
 
     sources = sorted(
         file
-        for file in folder.iterdir()
+        for file in source_folder.iterdir()
         if file.is_file() and file.suffix.lower() in SOURCE_EXTENSIONS
     )
+    expected_outputs = {f"{source.stem}.webp" for source in sources}
+
+    for output_directory in (thumb_folder, full_folder):
+        output_directory.mkdir(parents=True, exist_ok=True)
+        for output in output_directory.glob("*.webp"):
+            if output.name not in expected_outputs:
+                output.unlink()
 
     for source in sources:
         with Image.open(source) as original:

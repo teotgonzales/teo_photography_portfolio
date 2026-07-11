@@ -27,8 +27,21 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
       - name: Install dependencies
         run: npm ci
+
+      - name: Install image optimizer
+        run: python -m pip install Pillow
+
+      - name: Optimize and sync photos
+        run: |
+          npm run optimize-images
+          npm run sync-photos
 
       - name: Build website
         run: npm run build

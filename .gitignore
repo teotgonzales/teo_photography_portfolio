@@ -18,16 +18,5 @@ Thumbs.db
 # Preserved broken repository metadata
 .git-broken-backup/
 
-# Large source photos; the optimized WebP versions remain tracked
-/public/images/on-stage/*.jpg
-/public/images/on-stage/*.jpeg
-/public/images/on-stage/*.png
-/public/images/on-set/*.jpg
-/public/images/on-set/*.jpeg
-/public/images/on-set/*.png
-/public/images/portraits/*.jpg
-/public/images/portraits/*.jpeg
-/public/images/portraits/*.png
-/public/images/lifestyle/*.jpg
-/public/images/lifestyle/*.jpeg
-/public/images/lifestyle/*.png
+# Photo originals live in photo-sources and are intentionally tracked so
+# GitHub Actions can optimize and deploy them automatically.

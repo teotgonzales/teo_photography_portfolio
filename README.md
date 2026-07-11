@@ -59,21 +59,28 @@ npm run preview
 
 ## Editing Photos
 
-Add image files to the folder for the matching page:
+Add numbered source images to the folder for the matching page:
 
 ```text
-public/images/on-stage
-public/images/on-set
-public/images/portraits
-public/images/lifestyle
-public/images/contact
+photo-sources/on-stage
+photo-sources/on-set
+photo-sources/portraits
+photo-sources/lifestyle
 ```
 
-Then run:
+For example:
+
+```text
+01-opening-photo.jpg
+02-second-photo.jpg
+```
+
+Commit and push through GitHub Desktop. GitHub Actions automatically optimizes the images, syncs the gallery data, builds the site, and deploys it. To preview the same process locally, run:
 
 ```bash
 npm run optimize-images
 npm run sync-photos
+npm run build
 ```
 
 The optimizer creates:

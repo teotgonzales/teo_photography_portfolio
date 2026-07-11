@@ -93,19 +93,22 @@ The active categories are:
 - `Portraits`
 - `Lifestyle`
 
-To add photo cards, place image files in the correct `public/images/...` folder, then run `npm run optimize-images` and `npm run sync-photos`.
+To add photo cards, place numbered originals in the correct `photo-sources/...` folder, then commit and push. GitHub Actions handles optimization, syncing, building, and deployment.
 
 ## Images
 
-Images should be placed in the folder for the matching page:
+Original images should be placed in the source folder for the matching page:
 
 ```text
-public/images/on-stage
-public/images/on-set
-public/images/portraits
-public/images/lifestyle
-public/images/contact
+photo-sources/on-stage
+photo-sources/on-set
+photo-sources/portraits
+photo-sources/lifestyle
 ```
+
+Use a leading number to control the gallery order, for example `01-opening-photo.jpg`, `02-second-photo.jpg`, and `03-third-photo.jpg`. Numbered files sort first in ascending numeric order. The ordering number is removed from generated slugs and titles.
+
+The optimizer writes deployable WebP files to `public/images/[category]/thumbs` and `public/images/[category]/full`. Do not manually place originals in those output folders. The Contact page image remains in `public/images/contact`.
 
 Use image paths like:
 
@@ -119,7 +122,7 @@ Do not import images into React components unless you intentionally move them in
 
 ## Auto-Syncing Photos
 
-For normal updates, use this order:
+GitHub Actions automatically uses this order after every push to `main`:
 
 ```bash
 npm run optimize-images
@@ -150,10 +153,10 @@ scripts/optimize-images.py
 It scans these folders:
 
 ```text
-public/images/on-stage
-public/images/on-set
-public/images/portraits
-public/images/lifestyle
+photo-sources/on-stage
+photo-sources/on-set
+photo-sources/portraits
+photo-sources/lifestyle
 ```
 
 It then rewrites:
@@ -173,14 +176,14 @@ Supported image types:
 - `.webp`
 - `.avif`
 
-After adding or removing photos, run:
+For local previewing, run:
 
 ```bash
 npm run optimize-images
 npm run sync-photos
 ```
 
-Then refresh the site. For a live website, rebuild and redeploy after syncing.
+Then run `npm run dev`. For the live website, committing and pushing the numbered source photos is sufficient.
 
 ## Components
 
@@ -362,4 +365,25 @@ Do not modify MX or TXT records when changing website DNS; those records may con
 
 ## Repository Ignore Rules
 
-`.gitignore` excludes dependencies, generated output, local settings, and large source JPG/PNG files. Optimized `thumbs` and `full` WebP files remain tracked because the deployed website uses them.
+`.gitignore` excludes dependencies, generated output, and local settings. Originals in `photo-sources` are intentionally tracked so GitHub Actions can optimize them. The first automated-photo commit is large because it adds the existing source library; no current source file exceeds GitHub's 100 MB per-file limit.
+
+## Automated Photo Publishing
+
+The GitHub Pages workflow performs these steps on every push:
+
+1. Installs Node.js and Python.
+2. Installs project dependencies and Pillow.
+3. Runs `npm run optimize-images`.
+4. Runs `npm run sync-photos`.
+5. Runs `npm run build`.
+6. Deploys `dist` to GitHub Pages.
+
+The optimizer also deletes orphaned WebP outputs when a source photo is removed.
+
+The contributor workflow is:
+
+1. Rename photos with leading order numbers.
+2. Drop them into the appropriate `photo-sources` category folder.
+3. Review the files in GitHub Desktop.
+4. Commit to `main` and click **Push origin**.
+5. Wait for the GitHub Pages Action to complete.
