@@ -25,7 +25,7 @@
   }
 
   .project-grid {
-    columns: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .section-heading,
@@ -100,7 +100,7 @@
   }
 
   .project-grid {
-    columns: 1;
+    grid-template-columns: 1fr;
   }
 
   .project-gallery {

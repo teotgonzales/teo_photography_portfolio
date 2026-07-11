@@ -9,6 +9,12 @@ type ProjectGridProps = {
 };
 
 export function ProjectGrid({ projects }: ProjectGridProps) {
+  const getColumnCount = () => {
+    if (window.innerWidth <= 680) return 1;
+    if (window.innerWidth <= 980) return 2;
+    return 3;
+  };
+  const [columnCount, setColumnCount] = useState(getColumnCount);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [previousProject, setPreviousProject] = useState<Project | null>(null);
   const transitionTimeoutRef = useRef<number | null>(null);
@@ -16,6 +22,17 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
   const activeImage = activeProject?.images[0];
   const previousImage = previousProject?.images[0];
   const activeDisplayIndex = activeIndex === null ? 0 : activeIndex + 1;
+  const columns = Array.from({ length: Math.min(columnCount, projects.length) }, (_, columnIndex) =>
+    projects
+      .map((project, index) => ({ project, index }))
+      .filter(({ index }) => index % columnCount === columnIndex),
+  );
+
+  useEffect(() => {
+    const handleResize = () => setColumnCount(getColumnCount());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const clearTransitionTimeout = () => {
     if (transitionTimeoutRef.current !== null) {
@@ -110,8 +127,12 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
   return (
     <>
       <div className="project-grid">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} onOpen={() => openProject(index)} />
+        {columns.map((column, columnIndex) => (
+          <div className="project-grid-column" key={`column-${columnIndex}`}>
+            {column.map(({ project, index }) => (
+              <ProjectCard key={project.id} project={project} onOpen={() => openProject(index)} />
+            ))}
+          </div>
         ))}
       </div>
       {activeProject

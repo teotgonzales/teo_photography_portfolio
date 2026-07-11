@@ -1,13 +1,15 @@
 .project-grid {
-  columns: 3;
-  column-gap: clamp(0.75rem, 1.25vw, 1.25rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.25vw, 1.25rem);
   width: min(100%, 1400px);
   margin-inline: auto;
 }
 
-.project-card {
-  break-inside: avoid;
-  margin: 0 0 clamp(0.75rem, 1.25vw, 1.25rem);
+.project-grid-column {
+  display: grid;
+  align-content: start;
+  gap: clamp(0.75rem, 1.25vw, 1.25rem);
 }
 
 .project-card-button {
