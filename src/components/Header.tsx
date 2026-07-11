@@ -22,14 +22,19 @@ export function Header() {
               <path d="m4 7 8 6 8-6" />
             </svg>
           </a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram">
+          <a href="https://www.instagram.com/teotgonzales" target="_blank" rel="noreferrer" aria-label="Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5" />
               <circle cx="12" cy="12" r="4" />
               <circle cx="17.5" cy="6.5" r="1" />
             </svg>
           </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <a
+            href="https://www.linkedin.com/in/teo-gonzales-00962a420/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M4 9h4v11H4z" />
               <path d="M6 4.4a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4z" />
