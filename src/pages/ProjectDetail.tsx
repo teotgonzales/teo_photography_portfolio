@@ -21,7 +21,7 @@ export function ProjectDetail() {
           <Link className="text-link muted" to="/lifestyle">
             Back to lifestyle
           </Link>
-          <h1>{project.title}</h1>
+          {project.title ? <h1>{project.title}</h1> : null}
           <p>{project.description}</p>
         </div>
         <dl className="project-meta-list">

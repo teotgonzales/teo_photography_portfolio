@@ -4,7 +4,7 @@ export const portraitProjects: Project[] = [
   {
     id: 3001,
     slug: '04-25-marcusgradphotos-teogonzales008',
-    title: '04 25 MarcusGradPhotos 008',
+    title: 'MarcusGradPhotos',
     category: 'Portraits',
     year: '2026',
     client: 'Portraits',
@@ -17,7 +17,7 @@ export const portraitProjects: Project[] = [
   {
     id: 3002,
     slug: '05-13-andresgradphotos-teogonzales015',
-    title: '05 13 AndresGradPhotos 015',
+    title: 'AndresGradPhotos',
     category: 'Portraits',
     year: '2026',
     client: 'Portraits',
@@ -30,7 +30,7 @@ export const portraitProjects: Project[] = [
   {
     id: 3003,
     slug: 'delaneygradphotos-teogonzales008',
-    title: 'DelaneyGradPhotos 008',
+    title: 'DelaneyGradPhotos',
     category: 'Portraits',
     year: '2026',
     client: 'Portraits',
@@ -43,7 +43,7 @@ export const portraitProjects: Project[] = [
   {
     id: 3004,
     slug: 'emmagradphotos-teogonzales004',
-    title: 'EmmaGradPhotos 004',
+    title: 'EmmaGradPhotos',
     category: 'Portraits',
     year: '2026',
     client: 'Portraits',
@@ -56,7 +56,7 @@ export const portraitProjects: Project[] = [
   {
     id: 3005,
     slug: 'grace-ashleygradphotosv2-teogonzales048',
-    title: 'Grace+AshleyGradPhotosV2 048',
+    title: 'Grace+AshleyGradPhotosV2',
     category: 'Portraits',
     year: '2026',
     client: 'Portraits',
@@ -69,7 +69,7 @@ export const portraitProjects: Project[] = [
   {
     id: 3006,
     slug: 'img3615-r01-030',
-    title: 'IMG3615 R01 030',
+    title: 'IMG3615 R01',
     category: 'Portraits',
     year: '2026',
     client: 'Portraits',
@@ -82,7 +82,7 @@ export const portraitProjects: Project[] = [
   {
     id: 3007,
     slug: 'jep2026gradphotos-teogonzales009',
-    title: 'JEP2026GradPhotos 009',
+    title: 'JEP2026GradPhotos',
     category: 'Portraits',
     year: '2026',
     client: 'Portraits',
@@ -95,7 +95,7 @@ export const portraitProjects: Project[] = [
   {
     id: 3008,
     slug: 's26gradphotoscinestill-teogonzales032',
-    title: 'S26GradPhotosCineStill 032',
+    title: 'S26GradPhotosCineStill',
     category: 'Portraits',
     year: '2026',
     client: 'Portraits',
@@ -108,7 +108,7 @@ export const portraitProjects: Project[] = [
   {
     id: 3009,
     slug: 'trojanclimbinggradphotos2026-teogonzales073',
-    title: 'TrojanClimbingGradPhotos2026 073',
+    title: 'TrojanClimbingGradPhotos2026',
     category: 'Portraits',
     year: '2026',
     client: 'Portraits',

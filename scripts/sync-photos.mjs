@@ -59,7 +59,7 @@ const isGalleryImage = (filename) =>
 
 const compareGalleryFiles = (page) => (a, b) => {
   const getNumber = (filename) => {
-    const match = parse(filename).name.match(/^(\d+)[\s_.-]+/);
+    const match = parse(filename).name.match(/^(\d+)(?:[\s_.-]+|$)/);
     return match ? Number(match[1]) : null;
   };
   const aNumber = getNumber(a);
@@ -88,21 +88,22 @@ const escapeText = (value) => value.replaceAll('\\', '\\\\').replaceAll("'", "\\
 
 const toSlug = (filename) =>
   parse(filename)
-    .name.replace(/^\d+[\s_.-]+/, '').toLowerCase()
+    .name.replace(/^\d+(?:[\s_.-]+|$)/, '').toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '') || 'photo';
 
 const toTitle = (filename) => {
   const cleaned = parse(filename)
-    .name.replace(/^\d+[\s_.-]+/, '')
+    .name.replace(/^\d+(?:[\s_.-]+|$)/, '')
     .replace(/teogonzales/gi, '')
     .replace(/\.(jpg|jpeg|png|webp|avif)$/i, '')
     .replace(/[_-]+/g, ' ')
+    .replace(/\b\d+\b/g, '')
     .replace(/\s+/g, ' ')
     .trim();
 
   if (!cleaned) {
-    return 'Untitled';
+    return '';
   }
 
   return cleaned.replace(/\b\w/g, (letter) => letter.toUpperCase());

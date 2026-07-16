@@ -4,7 +4,7 @@ export const onSetProjects: Project[] = [
   {
     id: 2001,
     slug: 'aylaclaire02-06-2026-teogonzales053',
-    title: 'AylaClaire02 06 2026 053',
+    title: 'AylaClaire02',
     category: 'On Set',
     year: '2026',
     client: 'On Set',
@@ -17,7 +17,7 @@ export const onSetProjects: Project[] = [
   {
     id: 2002,
     slug: 'eulogybts-teogonzales013',
-    title: 'EulogyBTS 013',
+    title: 'EulogyBTS',
     category: 'On Set',
     year: '2026',
     client: 'On Set',
@@ -30,7 +30,7 @@ export const onSetProjects: Project[] = [
   {
     id: 2003,
     slug: 'eulogybts-teogonzales050',
-    title: 'EulogyBTS 050',
+    title: 'EulogyBTS',
     category: 'On Set',
     year: '2026',
     client: 'On Set',
@@ -43,7 +43,7 @@ export const onSetProjects: Project[] = [
   {
     id: 2004,
     slug: 'aylaclaire02-06-2026-teogonzales080',
-    title: 'AylaClaire02 06 2026 080',
+    title: 'AylaClaire02',
     category: 'On Set',
     year: '2026',
     client: 'On Set',
@@ -56,7 +56,7 @@ export const onSetProjects: Project[] = [
   {
     id: 2005,
     slug: 'eulogybts-teogonzales095',
-    title: 'EulogyBTS 095',
+    title: 'EulogyBTS',
     category: 'On Set',
     year: '2026',
     client: 'On Set',
@@ -69,7 +69,7 @@ export const onSetProjects: Project[] = [
   {
     id: 2006,
     slug: 'img4640-r01-026',
-    title: 'IMG4640 R01 026',
+    title: 'IMG4640 R01',
     category: 'On Set',
     year: '2026',
     client: 'On Set',
@@ -82,7 +82,7 @@ export const onSetProjects: Project[] = [
   {
     id: 2007,
     slug: 'lipsticklesbianbts-teogonzales047',
-    title: 'LipstickLesbianBTS 047',
+    title: 'LipstickLesbianBTS',
     category: 'On Set',
     year: '2026',
     client: 'On Set',
@@ -95,7 +95,7 @@ export const onSetProjects: Project[] = [
   {
     id: 2008,
     slug: 'strayscinestill-teogonzales029',
-    title: 'StraysCineStill 029',
+    title: 'StraysCineStill',
     category: 'On Set',
     year: '2026',
     client: 'On Set',
@@ -108,7 +108,7 @@ export const onSetProjects: Project[] = [
   {
     id: 2009,
     slug: 'strayscinestill-teogonzales084',
-    title: 'StraysCineStill 084',
+    title: 'StraysCineStill',
     category: 'On Set',
     year: '2026',
     client: 'On Set',

@@ -10,7 +10,7 @@ type ProjectGridProps = {
 
 export function ProjectGrid({ projects }: ProjectGridProps) {
   const getColumnCount = () => {
-    if (window.innerWidth <= 680) return 1;
+    if (window.innerWidth <= 680) return 2;
     if (window.innerWidth <= 980) return 2;
     return 3;
   };
@@ -175,7 +175,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
               />
             </div>
             <figcaption>
-              <span>{activeProject.title}</span>
+              {activeProject.title ? <span>{activeProject.title}</span> : <span aria-hidden="true" />}
               <span>
                 {activeDisplayIndex} / {projects.length}
               </span>

@@ -68,12 +68,17 @@ photo-sources/portraits
 photo-sources/lifestyle
 ```
 
-For example:
+Both number-only filenames and numbered descriptive filenames are supported. For example:
 
 ```text
-01-opening-photo.jpg
-02-second-photo.jpg
+01.jpg
+02_AylaClaire.jpg
+03-concert-portrait.jpg
 ```
+
+Numbered photos sort first in ascending numeric order; unnumbered photos follow alphabetically. The leading order number is not shown as a caption. Standalone numeric parts elsewhere in the filename are also omitted from the displayed title. If no descriptive text remains, as with `01.jpg`, the photo has no caption instead of displaying `Untitled`. If text remains, it becomes the caption in the full-screen viewer—for example, `02_010_01_AylaClaire_005.jpg` displays `AylaClaire`.
+
+The gallery uses three columns on desktop and two columns on tablets and phones, so mobile photos appear in pairs.
 
 Commit and push through GitHub Desktop. GitHub Actions automatically optimizes the images, syncs the gallery data, builds the site, and deploys it. To preview the same process locally, run:
 

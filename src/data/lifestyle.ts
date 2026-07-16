@@ -4,7 +4,7 @@ export const lifestyleProjects: Project[] = [
   {
     id: 4001,
     slug: '09-27-trojannavy-teogonzales003',
-    title: '09 27 TrojanNavy 003',
+    title: 'TrojanNavy',
     category: 'Lifestyle',
     year: '2026',
     client: 'Lifestyle',
@@ -30,7 +30,7 @@ export const lifestyleProjects: Project[] = [
   {
     id: 4003,
     slug: 'eulogyfundrager-teogonzales007',
-    title: 'EulogyFundrager 007',
+    title: 'EulogyFundrager',
     category: 'Lifestyle',
     year: '2026',
     client: 'Lifestyle',
@@ -43,7 +43,7 @@ export const lifestyleProjects: Project[] = [
   {
     id: 4004,
     slug: 'gphibiddayspring2026-teogonzales006',
-    title: 'GPHIBidDaySpring2026 006',
+    title: 'GPHIBidDaySpring2026',
     category: 'Lifestyle',
     year: '2026',
     client: 'Lifestyle',
@@ -56,7 +56,7 @@ export const lifestyleProjects: Project[] = [
   {
     id: 4005,
     slug: 'viennasummer2026-teogonzales0052',
-    title: 'ViennaSummer2026 0052',
+    title: 'ViennaSummer2026',
     category: 'Lifestyle',
     year: '2026',
     client: 'Lifestyle',

@@ -106,7 +106,7 @@ photo-sources/portraits
 photo-sources/lifestyle
 ```
 
-Use a leading number to control the gallery order, for example `01-opening-photo.jpg`, `02-second-photo.jpg`, and `03-third-photo.jpg`. Numbered files sort first in ascending numeric order. The ordering number is removed from generated slugs and titles.
+Use a leading number to control the gallery order, for example `01.jpg`, `02-opening-photo.jpg`, and `03_second-photo.jpg`. A number may be the entire filename stem or may be followed by a space, underscore, period, or hyphen. Numbered files sort first in ascending numeric order; unnumbered files follow alphabetically. The leading ordering number is removed from generated titles. Standalone numeric tokens elsewhere in the filename are also removed from the displayed title, so `02_010_01_AylaClaire_005.jpg` displays `AylaClaire`. If no descriptive text remains, as with `01.jpg`, the generated title is empty and the interface does not display `Untitled` or a blank caption label.
 
 The optimizer writes deployable WebP files to `public/images/[category]/thumbs` and `public/images/[category]/full`. Do not manually place originals in those output folders. The Contact page image remains in `public/images/contact`.
 
@@ -204,8 +204,9 @@ Then run `npm run dev`. For the live website, committing and pushing the numbere
 
 - `src/components/ProjectGrid.tsx`
   - Displays a natural-proportion masonry gallery
-  - Uses three columns on desktop, two on tablets, and one on phones
-  - Does not show captions below gallery images
+  - Uses three columns on desktop and two-column pairs on tablets and phones
+  - Shows a generated photo title in the full-screen viewer only when meaningful filename text remains
+  - Does not show captions below gallery thumbnails
   - Handles full-screen image viewer
   - Supports click-to-open, close button, backdrop click, keyboard Escape, and arrow key navigation
 
@@ -267,7 +268,7 @@ It imports these files:
 
 - `src/styles/responsive.css`
   - tablet/mobile breakpoints
-  - mobile gallery uses one column
+  - mobile gallery uses two columns so photos appear in pairs
 
 Component CSS files are colocated in `src/components`.
 

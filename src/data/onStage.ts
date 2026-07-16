@@ -4,7 +4,7 @@ export const onStageProjects: Project[] = [
   {
     id: 1001,
     slug: '04-06-amelie-tirebiterbrewery-teogonzales012',
-    title: '04 06 Amelie@TirebiterBrewery 012',
+    title: 'Amelie@TirebiterBrewery',
     category: 'On Stage',
     year: '2026',
     client: 'On Stage',
@@ -17,7 +17,7 @@ export const onStageProjects: Project[] = [
   {
     id: 1002,
     slug: '010-01-aylaclaire-teogonzales005',
-    title: '010 01 AylaClaire 005',
+    title: 'AylaClaire',
     category: 'On Stage',
     year: '2026',
     client: 'On Stage',
@@ -30,7 +30,7 @@ export const onStageProjects: Project[] = [
   {
     id: 1003,
     slug: '09-19-samia-thefondatheatre-teogonzales004',
-    title: '09 19 Samia@TheFondaTheatre 004',
+    title: 'Samia@TheFondaTheatre',
     category: 'On Stage',
     year: '2026',
     client: 'On Stage',
@@ -43,7 +43,7 @@ export const onStageProjects: Project[] = [
   {
     id: 1004,
     slug: '010-01-jsolomon-teogonzales007',
-    title: '010 01 JSolomon 007',
+    title: 'JSolomon',
     category: 'On Stage',
     year: '2026',
     client: 'On Stage',
@@ -56,7 +56,7 @@ export const onStageProjects: Project[] = [
   {
     id: 1005,
     slug: '010-01-jsolomon-teogonzales031',
-    title: '010 01 JSolomon 031',
+    title: 'JSolomon',
     category: 'On Stage',
     year: '2026',
     client: 'On Stage',
@@ -69,7 +69,7 @@ export const onStageProjects: Project[] = [
   {
     id: 1006,
     slug: '04-16-smalltalk-moroccanlounge-teogonzales036',
-    title: '04 16 SmallTalk@MoroccanLounge 036',
+    title: 'SmallTalk@MoroccanLounge',
     category: 'On Stage',
     year: '2026',
     client: 'On Stage',
@@ -82,7 +82,7 @@ export const onStageProjects: Project[] = [
   {
     id: 1007,
     slug: '20240321-dsc01091-edit',
-    title: '20240321 DSC01091 Edit',
+    title: 'DSC01091 Edit',
     category: 'On Stage',
     year: '2026',
     client: 'On Stage',
@@ -108,7 +108,7 @@ export const onStageProjects: Project[] = [
   {
     id: 1009,
     slug: 'almostmondayconcert-teogonzales-39',
-    title: 'AlmostMondayConcert 39',
+    title: 'AlmostMondayConcert',
     category: 'On Stage',
     year: '2026',
     client: 'On Stage',
