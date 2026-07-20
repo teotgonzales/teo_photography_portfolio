@@ -104,8 +104,9 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  color: var(--muted);
-  font-size: 0.85rem;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .grid-lightbox-close,
